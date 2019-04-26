@@ -19,7 +19,7 @@ def new_rpm(r):
     time.sleep(2)
 
 def coolantTemp(t):
-    print("Coolant Temp:", t.value.to("fahrenheit"))      #degrees science
+    print("Coolant Temp:", t.value.to("fahrenheit"))      #degrees f
 
 def throttle(g):
     print("Throttle Position:", g.value)      #percent
@@ -45,7 +45,9 @@ def fuel(r):
 
 def corn(r):
     print("Corn?:", r.value)
-    print("**************")
+    
+def oilTemp(r):
+    print("oil temp:", r.value.to("fahrenheit"))
 
 
 
@@ -59,11 +61,12 @@ connection.watch(obd.commands.INTAKE_TEMP, callback=intakeTemp)
 connection.watch(obd.commands.TIMING_ADVANCE, callback=racecar)
 connection.watch(obd.commands.FUEL_LEVEL, callback=fuel)
 connection.watch(obd.commands.ETHANOL_PERCENT, callback=corn)
+connection.watch(obd.commands.OIL_TEMP, callback=oilTemp)
 connection.start()
 
 #callback will now be fired upon receipt of new values
 
-time.sleep(60)
+time.sleep(60)          #only here to keep program from ending;
 # response = connection.query(obd.commands.O2_SENSORS)
 # result = response.value
 # print(result)
