@@ -1,11 +1,3 @@
-Microsoft Windows [Version 10.0.17134.706]
-(c) 2018 Microsoft Corporation. All rights reserved.
-
-C:\Users\Priso>cd Documents
-
-C:\Users\Priso\Documents>cd python
-
-C:\Users\Priso\Documents\python>python car.py
 760.5 revolutions_per_minute
 90 degC
 3.9215686274509802 percent
@@ -146,10 +138,3 @@ C:\Users\Priso\Documents\python>python car.py
 2.7450980392156863 percent
 18.431372549019606 percent
 **************
-819.25 revolutions_per_minute
-Traceback (most recent call last):
-  File "car.py", line 38, in <module>
-    time.sleep(60)
-KeyboardInterrupt
-
-C:\Users\Priso\Documents\python>
