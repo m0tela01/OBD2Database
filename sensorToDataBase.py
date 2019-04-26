@@ -1,10 +1,11 @@
 import os
+import re
 import json
 import pyrebase
 import requests
 
 source = "C:\\Users\\MichaelTelahun\\Documents\\CECS 525\\FinalProject\\OBD2Database\\SensorRead.txt"
-headers = ["RPM", "Cool Temp", "Throttle Position", "Engine Load"]
+headers = ["RPM", "CoolantTemp", "ThrottlePosition", "EngineLoad"]
 
 # data sample
 # 760.5 revolutions_per_minute
@@ -50,18 +51,23 @@ for item in sensorData:
         db.child("").remove()
         results = db.child('').set(data, user['idToken'])
         print('\n( ͡° ͜ʖ ͡°)')
+        break # remove this
         obdData = open('obdData.json', 'w')
         obdData.write('[\n')
         index = 0
     # last row in set
     elif index == len(headers) - 1:
-        row = [headers[index - 1] + ":" + item.rstrip()]
+        item = re.sub('[^0-9.]', '', item)
+        item = str(round(float(item), 3))
+        row = [headers[index] + ":" + item]
         json.dump(row,obdData)
         index = index + 1
         obdData.write('\n')
     # all other rows in set
     else:
-        row = [headers[index] + ":" + item.rstrip()]
+        item = re.sub('[^0-9.]', '', item)
+        item = str(round(float(item), 3))
+        row = [headers[index] + ":" + item]
         json.dump(row,obdData)
         obdData.write(',\n')
         index = index + 1
