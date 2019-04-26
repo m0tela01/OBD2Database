@@ -15,22 +15,38 @@ connection = obd.Async("COM24")            #same as obd.OBD()
 
 #a callback that prints every new value to console
 def new_rpm(r):
-    print(r.value)
+    print("RPM:", r.value)
     time.sleep(2)
 
 def coolantTemp(t):
-    print(t.value)      #degrees science
+    print("Coolant Temp:", t.value.to("fahrenheit"))      #degrees science
 
 def throttle(g):
-    print(g.value)      #percent
+    print("Throttle Position:", g.value)      #percent
 
 def load(r):
-    print(r.value)
+    print("Engine Load:", r.value)
 
 def speed(r):
-    print(r.value)              #in km/s
-    print(r.value.to("mph"))    #untested, should work
+    print("Speed Kph:", r.value)              #in km/s
+    print("Speed Mph:", r.value.to("mph"))    #untested, should work
+
+def fuelPressure(r):
+    print("Fuel Pressure kPa:", r.value)              # in kPa
+
+def intakeTemp(r):
+    print("Air Intake Temp:", r.value.to("fahrenheit"))
+
+def racecar(r):
+    print("degrees racecar:", r.value)
+
+def fuel(r):
+    print("Fuel Level:", r.value)
+
+def corn(r):
+    print("Corn?:", r.value)
     print("**************")
+
 
 
 connection.watch(obd.commands.RPM, callback=new_rpm)
@@ -38,6 +54,11 @@ connection.watch(obd.commands.COOLANT_TEMP, callback=coolantTemp)
 connection.watch(obd.commands.THROTTLE_POS, callback=throttle)
 connection.watch(obd.commands.ENGINE_LOAD, callback=load)
 connection.watch(obd.commands.SPEED, callback=speed)
+connection.watch(obd.commands.FUEL_PRESSURE, callback=fuelPressure)
+connection.watch(obd.commands.INTAKE_TEMP, callback=intakeTemp)
+connection.watch(obd.commands.TIMING_ADVANCE, callback=racecar)
+connection.watch(obd.commands.FUEL_LEVEL, callback=fuel)
+connection.watch(obd.commands.ETHANOL_PERCENT, callback=corn)
 connection.start()
 
 #callback will now be fired upon receipt of new values
