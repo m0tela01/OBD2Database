@@ -59,7 +59,7 @@ for item in sensorData:
     elif index == len(headers) - 1:
         item = re.sub('[^0-9.]', '', item)
         item = str(round(float(item), 3))
-        row = [headers[index] + ":" + item]
+        row = headers[index] + ":" + item
         json.dump(row,obdData)
         index = index + 1
         obdData.write('\n')
@@ -67,7 +67,7 @@ for item in sensorData:
     else:
         item = re.sub('[^0-9.]', '', item)
         item = str(round(float(item), 3))
-        row = [headers[index] + ":" + item]
+        row = headers[index] + ":" + item
         json.dump(row,obdData)
         obdData.write(',\n')
         index = index + 1
