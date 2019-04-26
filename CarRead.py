@@ -45,10 +45,9 @@ def fuel(r):
 
 def corn(r):
     print("Corn?:", r.value)
-    
+
 def oilTemp(r):
     print("oil temp:", r.value.to("fahrenheit"))
-
 
 
 connection.watch(obd.commands.RPM, callback=new_rpm)
