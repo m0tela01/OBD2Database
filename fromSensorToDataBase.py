@@ -7,7 +7,7 @@ import requests
 import time
 
 source = "C:\\Users\\MichaelTelahun\\Documents\\CECS 525\\FinalProject\\OBD2Database\\"
-headers = ["RPM", "CoolantTemp", "ThrottlePosition", "EngineLoad", "SpeedKPH", "SpeedMPH", "AirIntake", "Degree"]
+headers = ["RPM", "CoolantTemp", "ThrottlePosition", "EngineLoad", "SpeedKPH", "SpeedMPH", "AirIntake", "Degree", "FuelLevel", "EthLevel", "OilTemp"]
 toJson = {}
 
 # firebase config and authentication
@@ -29,7 +29,7 @@ db = firebase.database()
 
 
 
-obdData = []
+obdSensorData = []
 #obd.logger.setLevel(obd.logging.DEBUG)
 
 connection = obd.Async("COM24")            #same as obd.OBD()
@@ -47,48 +47,48 @@ connection = obd.Async("COM24")            #same as obd.OBD()
 def new_rpm(r):
     print("RPM:", r.value)
     time.sleep(2)
-    obdData.append(r.value)
+    obdSensorData.append(r.value)
 
 def coolantTemp(t):
     print("Coolant Temp:", t.value.to("fahrenheit"))      #degrees f
-    obdData.append(t.value.to("fahrenheit"))
+    obdSensorData.append(t.value.to("fahrenheit"))
 
 def throttle(g):
     print("Throttle Position:", g.value)      #percent
-    obdData.append(g.value)
+    obdSensorData.append(g.value)
 
 def load(r):
     print("Engine Load:", r.value)
-    obdData.append(r.value)
+    obdSensorData.append(r.value)
 
 def speed(r):
     print("Speed Kph:", r.value)              #in km/s
     # print("Speed Mph:", r.value.to("mph"))    #untested, should work
-    obdData.append(r.value)
+    obdSensorData.append(r.value)
 
 def fuelPressure(r):
     print("Fuel Pressure kPa:", r.value)              # in kPa
-    obdData.append(r.value)
+    obdSensorData.append(r.value)
 
 def intakeTemp(r):
     print("Air Intake Temp:", r.value.to("fahrenheit"))
-    obdData.append(r.value.to("fahrenheit"))
+    obdSensorData.append(r.value.to("fahrenheit"))
 
 def racecar(r):
     print("degrees racecar:", r.value)
-    obdData.append(r.value)
+    obdSensorData.append(r.value)
 
 def fuel(r):
     print("Fuel Level:", r.value)
-    obdData.append(r.value)
+    obdSensorData.append(r.value)
 
 def corn(r):
     print("Corn?:", r.value)
-    obdData.append(r.value)
+    obdSensorData.append(r.value)
     
 def oilTemp(r):
     print("oil temp:", r.value.to("fahrenheit"))
-    obdData.append(r.value.to("fahrenheit"))
+    obdSensorData.append(r.value.to("fahrenheit"))
     print("**************")
 
 
@@ -103,62 +103,69 @@ connection.watch(obd.commands.TIMING_ADVANCE, callback=racecar)
 connection.watch(obd.commands.FUEL_LEVEL, callback=fuel)
 connection.watch(obd.commands.ETHANOL_PERCENT, callback=corn)
 connection.watch(obd.commands.OIL_TEMP, callback=oilTemp)
-connection.start()
+# connection.start()
 
 #callback will now be fired upon receipt of new values
 
-time.sleep(60)          #only here to keep program from ending;
+# time.sleep(60)          #only here to keep program from ending;
 # response = connection.query(obd.commands.O2_SENSORS)
 # result = response.value
 # print(result)
-connection.stop()
+# connection.stop()
 
 
 
 #   CHANGE THIS TO THE LIVE DATA
-sensorData = open(source + "SensorRead2.txt")
-#sensorData = obdData
+# sensorData = open(source + "SensorRead2.txt")
+#sensorData = obdSensorData
 # object to load 
-obdData = open('obdData.json', 'w')
+obdDatabase = open('obdData.json', 'w')
 
 head = True
 index = 0
-obdData.write('[\n')
+obdDatabase.write('[\n')
 
-for item in sensorData:
-    # write to firebase prepare for next object
-    if index == len(headers):
-        json.dump(toJson,obdData)
-        obdData.write('\n]')
-        obdData.close()
-        with open ("obdData.json",'r') as dataToWrite:
-            data=json.load(dataToWrite)
-        db.child("").remove()
-        results = db.child('').set(data, user['idToken'])
-        print('\n( ͡° ͜ʖ ͡°)')
-        # break # remove this
-        obdData = open('obdData.json', 'w')
-        time.sleep(.5)
-        toJson = {}
-        obdData.write('[\n')
-        index = 0
-    # last row in set
-    elif index == len(headers) - 1:
-        item = re.sub('[^0-9.]', '', item)
-        item = str(round(float(item), 2))
-        toJson[headers[index]] = item
-        index = index + 1
-    # all other rows in set
-    else:
-        celOrFeh = item
-        item = re.sub('[^0-9.]', '', item)
-        # always do things in celsius ?
-        if headers[index] == "CoolantTemp" or headers[index] == "AirIntake":
-            celOrFeh = re.sub('.*:', '', celOrFeh)
-            celOrFeh = re.sub('[0-9.]', '', celOrFeh).strip()
-            if celOrFeh == "degF":
-                item = str((float(item) - 32.0) *(5/9))
-        item = str(round(float(item), 2))
-        toJson[headers[index]] = item
-        index = index + 1
+connection.start()
+while(1):
+    if len(obdSensorData) == len(headers) + 1:
+        connection.stop()
+
+        for item in obdSensorData:
+            # write to firebase prepare for next object
+            if index == len(headers):
+                json.dump(toJson, obdDatabase)
+                obdDatabase.write('\n]')
+                obdDatabase.close()
+                with open ("obdData.json",'r') as dataToWrite:
+                    data=json.load(dataToWrite)
+                db.child("").remove()
+                results = db.child('').set(data, user['idToken'])
+                print('\n( ͡° ͜ʖ ͡°)')
+                # break # remove this
+                obdDatabase = open('obdData.json', 'w')
+                time.sleep(.5)
+                toJson = {}
+                obdSensorData = []
+                obdDatabase.write('[\n')
+                index = 0
+                connection.start()
+            # last row in set
+            elif index == len(headers) - 1:
+                item = re.sub('[^0-9.]', '', item)
+                item = str(round(float(item), 2))
+                toJson[headers[index]] = item
+                index = index + 1
+            # all other rows in set
+            else:
+                celOrFeh = item
+                item = re.sub('[^0-9.]', '', item)
+                # always do things in celsius ?
+                if headers[index] == "CoolantTemp" or headers[index] == "AirIntake" or headers[index] == "OilTemp":
+                    celOrFeh = re.sub('.*:', '', celOrFeh)
+                    celOrFeh = re.sub('[0-9.]', '', celOrFeh).strip()
+                    if celOrFeh == "degF":
+                        item = str((float(item) - 32.0) *(5/9))
+                item = str(round(float(item), 2))
+                toJson[headers[index]] = item
+                index = index + 1
         
