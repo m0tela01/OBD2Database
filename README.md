@@ -6,5 +6,7 @@ test
 Do this first. 
 
 pip install obd
+
 pip install pyrebase
+
 pip install requests
