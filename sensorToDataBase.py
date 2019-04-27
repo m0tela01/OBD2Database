@@ -3,9 +3,11 @@ import re
 import json
 import pyrebase
 import requests
+import time
 
 source = "C:\\Users\\MichaelTelahun\\Documents\\CECS 525\\FinalProject\\OBD2Database\\SensorRead.txt"
 headers = ["RPM", "CoolantTemp", "ThrottlePosition", "EngineLoad"]
+toJson = {}
 
 # data sample
 # 760.5 revolutions_per_minute
@@ -44,31 +46,30 @@ obdData.write('[\n')
 for item in sensorData:
     # write to firebase prepare for next object
     if index == len(headers):
-        obdData.write(']')
+        json.dump(toJson,obdData)
+        obdData.write('\n]')
         obdData.close()
         with open ("obdData.json",'r') as dataToWrite:
             data=json.load(dataToWrite)
         db.child("").remove()
         results = db.child('').set(data, user['idToken'])
         print('\n( ͡° ͜ʖ ͡°)')
-        break # remove this
+        # break # remove this
         obdData = open('obdData.json', 'w')
+        time.sleep(.25)
+        toJson = {}
         obdData.write('[\n')
         index = 0
     # last row in set
     elif index == len(headers) - 1:
         item = re.sub('[^0-9.]', '', item)
-        item = str(round(float(item), 3))
-        row = headers[index] + ":" + item
-        json.dump(row,obdData)
+        item = str(round(float(item), 2))
+        toJson[headers[index]] = item
         index = index + 1
-        obdData.write('\n')
     # all other rows in set
     else:
         item = re.sub('[^0-9.]', '', item)
-        item = str(round(float(item), 3))
-        row = headers[index] + ":" + item
-        json.dump(row,obdData)
-        obdData.write(',\n')
+        item = str(round(float(item), 2))
+        toJson[headers[index]] = item
         index = index + 1
         
