@@ -1,8 +1,3 @@
-C:\Users\Priso\Documents\OBD2Database>python CarRead.py
-[obd.obd] 'b'010A': Fuel Pressure' is not supported
-[obd.obd] 'b'012F': Fuel Level Input' is not supported
-[obd.obd] 'b'0152': Ethanol Fuel Percent' is not supported
-[obd.obd] 'b'015C': Engine oil temperature' is not supported
 RPM: 750.0 revolutions_per_minute
 Coolant Temp: 231.80000039999996 degF
 Throttle Position: 0.7843137254901961 percent
@@ -11,6 +6,7 @@ Speed Kph: 0 kph
 Speed Mph: 0.0 mph
 Air Intake Temp: 161.60000039999997 degF
 degrees racecar: 2.5 degree
+**************
 RPM: 754.0 revolutions_per_minute
 Coolant Temp: 230.00000039999995 degF
 Throttle Position: 0.7843137254901961 percent
@@ -19,6 +15,7 @@ Speed Kph: 0 kph
 Speed Mph: 0.0 mph
 Air Intake Temp: 161.60000039999997 degF
 degrees racecar: 1.0 degree
+**************
 RPM: 757.0 revolutions_per_minute
 Coolant Temp: 228.20000039999996 degF
 Throttle Position: 0.7843137254901961 percent
@@ -27,6 +24,7 @@ Speed Kph: 0 kph
 Speed Mph: 0.0 mph
 Air Intake Temp: 161.60000039999997 degF
 degrees racecar: 5.0 degree
+**************
 RPM: 737.0 revolutions_per_minute
 Coolant Temp: 226.40000039999995 degF
 Throttle Position: 0.7843137254901961 percent
@@ -35,6 +33,7 @@ Speed Kph: 0 kph
 Speed Mph: 0.0 mph
 Air Intake Temp: 161.60000039999997 degF
 degrees racecar: 3.5 degree
+**************
 RPM: 735.0 revolutions_per_minute
 Coolant Temp: 226.40000039999995 degF
 Throttle Position: 0.39215686274509803 percent
@@ -43,6 +42,7 @@ Speed Kph: 0 kph
 Speed Mph: 0.0 mph
 Air Intake Temp: 161.60000039999997 degF
 degrees racecar: 0.5 degree
+**************
 RPM: 743.0 revolutions_per_minute
 Coolant Temp: 222.80000039999996 degF
 Throttle Position: 0.39215686274509803 percent
@@ -51,6 +51,7 @@ Speed Kph: 0 kph
 Speed Mph: 0.0 mph
 Air Intake Temp: 163.40000039999995 degF
 degrees racecar: 1.5 degree
+**************
 RPM: 748.0 revolutions_per_minute
 Coolant Temp: 222.80000039999996 degF
 Throttle Position: 0.39215686274509803 percent
@@ -59,6 +60,7 @@ Speed Kph: 0 kph
 Speed Mph: 0.0 mph
 Air Intake Temp: 163.40000039999995 degF
 degrees racecar: -0.5 degree
+**************
 RPM: 758.0 revolutions_per_minute
 Coolant Temp: 221.00000039999995 degF
 Throttle Position: 0.39215686274509803 percent
@@ -67,6 +69,7 @@ Speed Kph: 0 kph
 Speed Mph: 0.0 mph
 Air Intake Temp: 163.40000039999995 degF
 degrees racecar: -0.5 degree
+**************
 RPM: 754.0 revolutions_per_minute
 Coolant Temp: 221.00000039999995 degF
 Throttle Position: 0.39215686274509803 percent
@@ -75,6 +78,7 @@ Speed Kph: 0 kph
 Speed Mph: 0.0 mph
 Air Intake Temp: 163.40000039999995 degF
 degrees racecar: 1.5 degree
+**************
 RPM: 742.0 revolutions_per_minute
 Coolant Temp: 219.20000039999996 degF
 Throttle Position: 0.39215686274509803 percent
@@ -83,6 +87,7 @@ Speed Kph: 0 kph
 Speed Mph: 0.0 mph
 Air Intake Temp: 163.40000039999995 degF
 degrees racecar: 21.0 degree
+**************
 RPM: 950.0 revolutions_per_minute
 Coolant Temp: 219.20000039999996 degF
 Throttle Position: 2.7450980392156863 percent
@@ -91,6 +96,7 @@ Speed Kph: 0 kph
 Speed Mph: 0.0 mph
 Air Intake Temp: 163.40000039999995 degF
 degrees racecar: 23.0 degree
+**************
 RPM: 1601.0 revolutions_per_minute
 Coolant Temp: 217.40000039999995 degF
 Throttle Position: 2.7450980392156863 percent
@@ -99,6 +105,7 @@ Speed Kph: 0 kph
 Speed Mph: 0.0 mph
 Air Intake Temp: 163.40000039999995 degF
 degrees racecar: 6.5 degree
+**************
 RPM: 1614.0 revolutions_per_minute
 Coolant Temp: 217.40000039999995 degF
 Throttle Position: 2.7450980392156863 percent
@@ -107,6 +114,7 @@ Speed Kph: 0 kph
 Speed Mph: 0.0 mph
 Air Intake Temp: 165.20000039999996 degF
 degrees racecar: -3.0 degree
+**************
 RPM: 1829.0 revolutions_per_minute
 Coolant Temp: 217.40000039999995 degF
 Throttle Position: 2.7450980392156863 percent
@@ -115,6 +123,7 @@ Speed Kph: 0 kph
 Speed Mph: 0.0 mph
 Air Intake Temp: 165.20000039999996 degF
 degrees racecar: 23.0 degree
+**************
 RPM: 1428.0 revolutions_per_minute
 Coolant Temp: 219.20000039999996 degF
 Throttle Position: 2.3529411764705883 percent
@@ -123,6 +132,7 @@ Speed Kph: 0 kph
 Speed Mph: 0.0 mph
 Air Intake Temp: 165.20000039999996 degF
 degrees racecar: 16.0 degree
+**************
 RPM: 2222.0 revolutions_per_minute
 Coolant Temp: 219.20000039999996 degF
 Throttle Position: 2.7450980392156863 percent
@@ -131,6 +141,7 @@ Speed Kph: 0 kph
 Speed Mph: 0.0 mph
 Air Intake Temp: 165.20000039999996 degF
 degrees racecar: -2.0 degree
+**************
 RPM: 1191.0 revolutions_per_minute
 Coolant Temp: 221.00000039999995 degF
 Throttle Position: 0.7843137254901961 percent
@@ -139,6 +150,7 @@ Speed Kph: 0 kph
 Speed Mph: 0.0 mph
 Air Intake Temp: 165.20000039999996 degF
 degrees racecar: -1.5 degree
+**************
 RPM: 800.0 revolutions_per_minute
 Coolant Temp: 221.00000039999995 degF
 Throttle Position: 0.7843137254901961 percent
@@ -147,6 +159,7 @@ Speed Kph: 0 kph
 Speed Mph: 0.0 mph
 Air Intake Temp: 165.20000039999996 degF
 degrees racecar: -0.5 degree
+**************
 RPM: 768.0 revolutions_per_minute
 Coolant Temp: 221.00000039999995 degF
 Throttle Position: 0.7843137254901961 percent
@@ -155,3 +168,4 @@ Speed Kph: 0 kph
 Speed Mph: 0.0 mph
 Air Intake Temp: 165.20000039999996 degF
 degrees racecar: 0.0 degree
+**************

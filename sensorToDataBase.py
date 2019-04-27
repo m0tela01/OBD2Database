@@ -5,15 +5,19 @@ import pyrebase
 import requests
 import time
 
-source = "C:\\Users\\MichaelTelahun\\Documents\\CECS 525\\FinalProject\\OBD2Database\\SensorRead.txt"
-headers = ["RPM", "CoolantTemp", "ThrottlePosition", "EngineLoad"]
+source = "C:\\Users\\MichaelTelahun\\Documents\\CECS 525\\FinalProject\\OBD2Database\\"
+headers = ["RPM", "CoolantTemp", "ThrottlePosition", "EngineLoad", "SpeedKPH", "SpeedMPH", "AirIntake", "Degree"]
 toJson = {}
 
 # data sample
-# 760.5 revolutions_per_minute
-# 90 degC
-# 3.9215686274509802 percent
-# 28.627450980392158 percent
+# RPM: 768.0 revolutions_per_minute
+# Coolant Temp: 221.00000039999995 degF
+# Throttle Position: 0.7843137254901961 percent
+# Engine Load: 27.058823529411764 percent
+# Speed Kph: 0 kph
+# Speed Mph: 0.0 mph
+# Air Intake Temp: 165.20000039999996 degF
+# degrees racecar: 0.0 degree
 # **************
 # data sample
 
@@ -35,7 +39,7 @@ db = firebase.database()
 # firebase config and authentication
 
 #   CHANGE THIS TO THE LIVE DATA
-sensorData = open("SensorRead.txt")
+sensorData = open(source + "SensorRead2.txt")
 #load object
 obdData = open('obdData.json', 'w')
 
@@ -56,7 +60,7 @@ for item in sensorData:
         print('\n( ͡° ͜ʖ ͡°)')
         # break # remove this
         obdData = open('obdData.json', 'w')
-        time.sleep(.25)
+        time.sleep(.5)
         toJson = {}
         obdData.write('[\n')
         index = 0
@@ -68,7 +72,14 @@ for item in sensorData:
         index = index + 1
     # all other rows in set
     else:
+        celOrFeh = item
         item = re.sub('[^0-9.]', '', item)
+        # always do things in celsius ?
+        if headers[index] == "CoolantTemp" or headers[index] == "AirIntake":
+            celOrFeh = re.sub('.*:', '', celOrFeh)
+            celOrFeh = re.sub('[0-9.]', '', celOrFeh).strip()
+            if celOrFeh == "degF":
+                item = str((float(item) - 32.0) *(5/9))
         item = str(round(float(item), 2))
         toJson[headers[index]] = item
         index = index + 1
