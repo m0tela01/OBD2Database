@@ -7,7 +7,7 @@ import requests
 import time
 
 # source = "C:\\Users\\MichaelTelahun\\Documents\\CECS 525\\FinalProject\\OBD2Database\\"
-headers = ["RPM", "CoolantTemp", "ThrottlePosition", "EngineLoad", "SpeedKPH", "SpeedMPH", "AirIntake", "Degree", "FuelLevel", "EthLevel", "OilTemp"]
+headers = ["RPM", "CoolantTemp", "ThrottlePosition", "EngineLoad", "SpeedKPH", "SpeedMPH", "FuelPressure", "AirIntake", "Degree"]
 toJson = {}
 
 # firebase config and authentication
@@ -62,8 +62,9 @@ def load(r):
 
 def speed(r):
     print("Speed Kph:", r.value)              #in km/s
-    # print("Speed Mph:", r.value.to("mph"))    #untested, should work
+    print("Speed Mph:", r.value.to("mph"))    #untested, should work
     obdSensorData.append("Speed Kph: " + str(r.value))
+    obdSensorData.append("Speed Kph: " + str(r.value.to("mph")))
 
 def fuelPressure(r):
     print("Fuel Pressure kPa:", r.value)              # in kPa
@@ -76,19 +77,20 @@ def intakeTemp(r):
 def racecar(r):
     print("degrees racecar:", r.value)
     obdSensorData.append("degrees racecar: " + str(r.value))
-
-def fuel(r):
-    print("Fuel Level:", r.value)
-    obdSensorData.append("Fuel Level: " + str(r.value))
-
-def corn(r):
-    print("Corn?:", r.value)
-    obdSensorData.append("Eth: " + str(r.value))
-
-def oilTemp(r):
-    print("oil temp:", r.value.to("fahrenheit"))
-    obdSensorData.append("oil temp: " + str(r.value.to("fahrenheit")))
     print("**************")
+
+# def fuel(r):
+#     print("Fuel Level:", r.value)
+#     obdSensorData.append("Fuel Level: " + str(r.value))
+
+# def corn(r):
+#     print("Corn?:", r.value)
+#     obdSensorData.append("Eth: " + str(r.value))
+
+# def oilTemp(r):
+#     print("oil temp:", r.value.to("fahrenheit"))
+#     obdSensorData.append("oil temp: " + str(r.value.to("fahrenheit")))
+#     print("**************")
 
 
 connection.watch(obd.commands.RPM, callback=new_rpm)

@@ -71,8 +71,9 @@ def load(r):
 
 def speed(r):
     print("Speed Kph:" + str(r.value))              #in km/s
-    # print("Speed Mph:", r.value.to("mph"))    #untested, should work
+    print("Speed Mph:", r.value.to("mph"))    #untested, should work
     obdSensorData.append("Speed Kph: " + str(r.value))
+    obdSensorData.append("Speed Mph: " + str(r.value.to("mph")))
 
 def fuelPressure(r):
     print("Fuel Pressure kPa:" + str(r.value))              # in kPa
@@ -85,19 +86,22 @@ def intakeTemp(r):
 def racecar(r):
     print("degrees racecar:" + str(r.value))
     obdSensorData.append("degrees racecar: " + str(r.value))
-
-def fuel(r):
-    print("Fuel Level:" + str(r.value))
-    obdSensorData.append("Fuel Level: " + str(r.value))
-
-def corn(r):
-    print("Corn?:" + str(r.value))
-    obdSensorData.append("Eth: " + str(r.value))
-
-def oilTemp(r):
-    print("oil temp:" + str(r.value.to("fahrenheit")))
-    obdSensorData.append("oil temp: " + str(r.value.to("fahrenheit")))
     print("**************")
+    for item in obdSensorData:
+        print(item)
+
+# def fuel(r):
+#     print("Fuel Level:" + str(r.value))
+#     obdSensorData.append("Fuel Level: " + str(r.value))
+
+# def corn(r):
+#     print("Corn?:" + str(r.value))
+#     obdSensorData.append("Eth: " + str(r.value))
+
+# def oilTemp(r):
+#     print("oil temp:" + str(r.value.to("fahrenheit")))
+#     obdSensorData.append("oil temp: " + str(r.value.to("fahrenheit")))
+#     print("**************")
 
 
 
