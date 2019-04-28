@@ -1,0 +1,94 @@
+[obd.obd] '012F: Fuel Level Input' is not supported
+[obd.obd] '0152: Ethanol Fuel Percent' is not supported
+[obd.obd] '015C: Engine oil temperature' is not supported
+Throttle Position: 3.52941176471 percent
+Coolant Temp: 192.2000004 degF
+Engine Load:26.2745098039 percent
+degrees racecar:11.0 degree
+Speed Kph:0 kph
+Air Intake Temp:176.0000004 degF
+Fuel Pressure kPa:375 kilopascal
+RPM:752.0 revolutions_per_minute
+Throttle Position: 3.52941176471 percent
+Coolant Temp: 192.2000004 degF
+Engine Load:21.1764705882 percent
+degrees racecar:11.5 degree
+Speed Kph:0 kph
+Air Intake Temp:176.0000004 degF
+Fuel Pressure kPa:381 kilopascal
+RPM:728.0 revolutions_per_minute
+Throttle Position: 2.35294117647 percent
+Coolant Temp: 192.2000004 degF
+Engine Load:20.0 percent
+degrees racecar:14.0 degree
+Speed Kph:0 kph
+Air Intake Temp:176.0000004 degF
+Fuel Pressure kPa:378 kilopascal
+RPM:750.25 revolutions_per_minute
+Throttle Position: 2.35294117647 percent
+Coolant Temp: 192.2000004 degF
+Engine Load:20.0 percent
+degrees racecar:12.5 degree
+Speed Kph:0 kph
+Air Intake Temp:176.0000004 degF
+Fuel Pressure kPa:381 kilopascal
+RPM:741.0 revolutions_per_minute
+Throttle Position: 2.74509803922 percent
+Coolant Temp: 192.2000004 degF
+Engine Load:20.3921568627 percent
+degrees racecar:11.5 degree
+Speed Kph:0 kph
+Air Intake Temp:176.0000004 degF
+Fuel Pressure kPa:381 kilopascal
+RPM:749.0 revolutions_per_minute
+Throttle Position: 2.35294117647 percent
+Coolant Temp: 192.2000004 degF
+Engine Load:20.3921568627 percent
+degrees racecar:12.5 degree
+Speed Kph:0 kph
+Air Intake Temp:176.0000004 degF
+Fuel Pressure kPa:381 kilopascal
+RPM:749.0 revolutions_per_minute
+Throttle Position: 2.35294117647 percent
+Coolant Temp: 194.0000004 degF
+Engine Load:20.3921568627 percent
+degrees racecar:13.0 degree
+Speed Kph:0 kph
+Air Intake Temp:176.0000004 degF
+Fuel Pressure kPa:381 kilopascal
+RPM:750.75 revolutions_per_minute
+Throttle Position: 2.35294117647 percent
+Coolant Temp: 194.0000004 degF
+Engine Load:20.3921568627 percent
+degrees racecar:13.0 degree
+Speed Kph:0 kph
+Air Intake Temp:176.0000004 degF
+Fuel Pressure kPa:381 kilopascal
+RPM:750.0 revolutions_per_minute
+Throttle Position: 2.35294117647 percent
+Coolant Temp: 194.0000004 degF
+Engine Load:20.3921568627 percent
+degrees racecar:12.0 degree
+Speed Kph:0 kph
+Air Intake Temp:176.0000004 degF
+Fuel Pressure kPa:381 kilopascal
+RPM:740.75 revolutions_per_minute
+Throttle Position: 2.74509803922 percent
+Coolant Temp: 194.0000004 degF
+Engine Load:20.7843137255 percent
+degrees racecar:12.0 degree
+Speed Kph:0 kph
+Air Intake Temp:176.0000004 degF
+Fuel Pressure kPa:381 kilopascal
+RPM:752.0 revolutions_per_minute
+Throttle Position: 2.35294117647 percent
+Coolant Temp: 194.0000004 degF
+Engine Load:20.3921568627 percent
+degrees racecar:12.0 degree
+Speed Kph:0 kph
+Air Intake Temp:174.2000004 degF
+Fuel Pressure kPa:384 kilopascal
+^CTraceback (most recent call last):
+  File "CarRead.py", line 124, in <module>
+    time.sleep(60)          #only here to keep program from ending;
+KeyboardInterrupt

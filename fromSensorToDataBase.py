@@ -6,7 +6,7 @@ import pyrebase
 import requests
 import time
 
-source = "C:\\Users\\MichaelTelahun\\Documents\\CECS 525\\FinalProject\\OBD2Database\\"
+# source = "C:\\Users\\MichaelTelahun\\Documents\\CECS 525\\FinalProject\\OBD2Database\\"
 headers = ["RPM", "CoolantTemp", "ThrottlePosition", "EngineLoad", "SpeedKPH", "SpeedMPH", "AirIntake", "Degree", "FuelLevel", "EthLevel", "OilTemp"]
 toJson = {}
 
@@ -32,8 +32,8 @@ db = firebase.database()
 obdSensorData = []
 #obd.logger.setLevel(obd.logging.DEBUG)
 
-connection = obd.Async("COM24")            #same as obd.OBD()
-#connection = obd.OBD("/dev/ttyUSB0")      # ex for linux
+#connection = obd.Async("COM24")            #same as obd.OBD()
+connection = obd.Async(fast=False)      # ex for linux
 
 #cmd = obd.commands.SPEED
 # connection.watch(obd.commands.RPM)  #keep track of RPM
@@ -46,49 +46,48 @@ connection = obd.Async("COM24")            #same as obd.OBD()
 #a callback that prints every new value to console
 def new_rpm(r):
     print("RPM:", r.value)
-    time.sleep(2)
-    obdSensorData.append(r.value)
+    obdSensorData.append("RPM: " + str(r.value))
 
 def coolantTemp(t):
-    print("Coolant Temp:", t.value.to("fahrenheit"))      #degrees f
-    obdSensorData.append(t.value.to("fahrenheit"))
+    print("Coolant Temp: ", t.value.to("fahrenheit"))      #degrees f
+    obdSensorData.append("Coolant Temp: " + str(t.value.to("fahrenheit")))
 
 def throttle(g):
-    print("Throttle Position:", g.value)      #percent
-    obdSensorData.append(g.value)
+    print("Throttle Position: ", g.value)      #percent
+    obdSensorData.append("Throttle Position: " + str(g.value))
 
 def load(r):
     print("Engine Load:", r.value)
-    obdSensorData.append(r.value)
+    obdSensorData.append("Engine Load: " + str(r.value))
 
 def speed(r):
     print("Speed Kph:", r.value)              #in km/s
     # print("Speed Mph:", r.value.to("mph"))    #untested, should work
-    obdSensorData.append(r.value)
+    obdSensorData.append("Speed Kph: " + str(r.value))
 
 def fuelPressure(r):
     print("Fuel Pressure kPa:", r.value)              # in kPa
-    obdSensorData.append(r.value)
+    obdSensorData.append("Fuel Pressure kPa: " + str(r.value))
 
 def intakeTemp(r):
     print("Air Intake Temp:", r.value.to("fahrenheit"))
-    obdSensorData.append(r.value.to("fahrenheit"))
+    obdSensorData.append("Air Intake Temp: " + str(r.value.to("fahrenheit")))
 
 def racecar(r):
     print("degrees racecar:", r.value)
-    obdSensorData.append(r.value)
+    obdSensorData.append("degrees racecar: " + str(r.value))
 
 def fuel(r):
     print("Fuel Level:", r.value)
-    obdSensorData.append(r.value)
+    obdSensorData.append("Fuel Level: " + str(r.value))
 
 def corn(r):
     print("Corn?:", r.value)
-    obdSensorData.append(r.value)
-    
+    obdSensorData.append("Eth: " + str(r.value))
+
 def oilTemp(r):
     print("oil temp:", r.value.to("fahrenheit"))
-    obdSensorData.append(r.value.to("fahrenheit"))
+    obdSensorData.append("oil temp: " + str(r.value.to("fahrenheit")))
     print("**************")
 
 
@@ -118,7 +117,7 @@ connection.watch(obd.commands.OIL_TEMP, callback=oilTemp)
 #   CHANGE THIS TO THE LIVE DATA
 # sensorData = open(source + "SensorRead2.txt")
 #sensorData = obdSensorData
-# object to load 
+# object to load
 obdDatabase = open('obdData.json', 'w')
 
 head = True
@@ -139,8 +138,7 @@ while(1):
                 with open ("obdData.json",'r') as dataToWrite:
                     data=json.load(dataToWrite)
                 db.child("").remove()
-                results = db.child('').set(data, user['idToken'])
-                print('\n( ͡° ͜ʖ ͡°)')
+                print('\n\\o/')
                 # break # remove this
                 obdDatabase = open('obdData.json', 'w')
                 time.sleep(.5)
@@ -168,4 +166,3 @@ while(1):
                 item = str(round(float(item), 2))
                 toJson[headers[index]] = item
                 index = index + 1
-        
