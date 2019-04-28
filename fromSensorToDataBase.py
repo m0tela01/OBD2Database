@@ -45,50 +45,50 @@ connection = obd.Async(fast=False)      # ex for linux
 
 #a callback that prints every new value to console
 def new_rpm(r):
-    print("RPM:", r.value)
+    print("RPM:" + str(r.value))
     obdSensorData.append("RPM: " + str(r.value))
 
 def coolantTemp(t):
-    print("Coolant Temp: ", t.value.to("fahrenheit"))      #degrees f
+    print("Coolant Temp: " + str(t.value.to("fahrenheit")))      #degrees f
     obdSensorData.append("Coolant Temp: " + str(t.value.to("fahrenheit")))
 
 def throttle(g):
-    print("Throttle Position: ", g.value)      #percent
+    print("Throttle Position: " + str(g.value))      #percent
     obdSensorData.append("Throttle Position: " + str(g.value))
 
 def load(r):
-    print("Engine Load:", r.value)
+    print("Engine Load:" + str(r.value))
     obdSensorData.append("Engine Load: " + str(r.value))
 
 def speed(r):
-    print("Speed Kph:", r.value)              #in km/s
-    print("Speed Mph:", r.value.to("mph"))    #untested, should work
+    print("Speed Kph:" + str(r.value))              #in km/s
+    # print("Speed Mph:", r.value.to("mph"))    #untested, should work
     obdSensorData.append("Speed Kph: " + str(r.value))
-    obdSensorData.append("Speed Kph: " + str(r.value.to("mph")))
+    obdSensorData.append("Speed Mph: " + str(r.value.to("mph")))
 
 def fuelPressure(r):
-    print("Fuel Pressure kPa:", r.value)              # in kPa
+    print("Fuel Pressure kPa:" + str(r.value))              # in kPa
     obdSensorData.append("Fuel Pressure kPa: " + str(r.value))
 
 def intakeTemp(r):
-    print("Air Intake Temp:", r.value.to("fahrenheit"))
+    print("Air Intake Temp:" + str(r.value.to("fahrenheit")))
     obdSensorData.append("Air Intake Temp: " + str(r.value.to("fahrenheit")))
 
 def racecar(r):
-    print("degrees racecar:", r.value)
+    print("degrees racecar:" + str(r.value))
     obdSensorData.append("degrees racecar: " + str(r.value))
     print("**************")
 
 # def fuel(r):
-#     print("Fuel Level:", r.value)
+#     print("Fuel Level:" + str(r.value))
 #     obdSensorData.append("Fuel Level: " + str(r.value))
 
 # def corn(r):
-#     print("Corn?:", r.value)
+#     print("Corn?:" + str(r.value))
 #     obdSensorData.append("Eth: " + str(r.value))
 
 # def oilTemp(r):
-#     print("oil temp:", r.value.to("fahrenheit"))
+#     print("oil temp:" + str(r.value.to("fahrenheit")))
 #     obdSensorData.append("oil temp: " + str(r.value.to("fahrenheit")))
 #     print("**************")
 
@@ -101,9 +101,9 @@ connection.watch(obd.commands.SPEED, callback=speed)
 connection.watch(obd.commands.FUEL_PRESSURE, callback=fuelPressure)
 connection.watch(obd.commands.INTAKE_TEMP, callback=intakeTemp)
 connection.watch(obd.commands.TIMING_ADVANCE, callback=racecar)
-connection.watch(obd.commands.FUEL_LEVEL, callback=fuel)
-connection.watch(obd.commands.ETHANOL_PERCENT, callback=corn)
-connection.watch(obd.commands.OIL_TEMP, callback=oilTemp)
+#connection.watch(obd.commands.FUEL_LEVEL, callback=fuel)
+#connection.watch(obd.commands.ETHANOL_PERCENT, callback=corn)
+#connection.watch(obd.commands.OIL_TEMP, callback=oilTemp)
 # connection.start()
 
 #callback will now be fired upon receipt of new values
@@ -139,8 +139,10 @@ while(1):
                 obdDatabase.close()
                 with open ("obdData.json",'r') as dataToWrite:
                     data=json.load(dataToWrite)
-                db.child("").remove()
+                db.child('').remove()
+                results = db.child('').set(data, user['idToken'])
                 print('\n\\o/')
+                
                 # break # remove this
                 obdDatabase = open('obdData.json', 'w')
                 time.sleep(.5)

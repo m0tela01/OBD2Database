@@ -118,9 +118,9 @@ connection.watch(obd.commands.SPEED, callback=speed)
 connection.watch(obd.commands.FUEL_PRESSURE, callback=fuelPressure)
 connection.watch(obd.commands.INTAKE_TEMP, callback=intakeTemp)
 connection.watch(obd.commands.TIMING_ADVANCE, callback=racecar)
-connection.watch(obd.commands.FUEL_LEVEL, callback=fuel)
-connection.watch(obd.commands.ETHANOL_PERCENT, callback=corn)
-connection.watch(obd.commands.OIL_TEMP, callback=oilTemp)
+#connection.watch(obd.commands.FUEL_LEVEL, callback=fuel)
+#connection.watch(obd.commands.ETHANOL_PERCENT, callback=corn)
+#connection.watch(obd.commands.OIL_TEMP, callback=oilTemp)
 connection.start()
 
 #callback will now be fired upon receipt of new values
