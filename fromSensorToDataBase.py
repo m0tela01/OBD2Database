@@ -33,15 +33,7 @@ obdSensorData = []
 #obd.logger.setLevel(obd.logging.DEBUG)
 
 #connection = obd.Async("COM24")            #same as obd.OBD()
-connection = obd.Async(fast=False)      # ex for linux
-
-#cmd = obd.commands.SPEED
-# connection.watch(obd.commands.RPM)  #keep track of RPM
-# connection.start()                  #start async update loop
-#
-# #print(response.value)
-# #print(response.value.to("mph"))
-# print(connection.query(obd.commands.RPM))   #nonblocking
+connection = obd.Async(fast=False)      # the pi cant do fast
 
 #a callback that prints every new value to console
 def new_rpm(r):
@@ -76,22 +68,10 @@ def intakeTemp(r):
 
 def racecar(r):
     print("degrees racecar:" + str(r.value))
-    obdSensorData.append("degrees racecar: " + str(r.value))
     print("**************")
-
-# def fuel(r):
-#     print("Fuel Level:" + str(r.value))
-#     obdSensorData.append("Fuel Level: " + str(r.value))
-
-# def corn(r):
-#     print("Corn?:" + str(r.value))
-#     obdSensorData.append("Eth: " + str(r.value))
-
-# def oilTemp(r):
-#     print("oil temp:" + str(r.value.to("fahrenheit")))
-#     obdSensorData.append("oil temp: " + str(r.value.to("fahrenheit")))
-#     print("**************")
-
+    obdSensorData.append("degrees racecar: " + str(r.value))
+    obdSensorData.append("**************")
+    
 
 connection.watch(obd.commands.RPM, callback=new_rpm)
 connection.watch(obd.commands.COOLANT_TEMP, callback=coolantTemp)
@@ -101,20 +81,9 @@ connection.watch(obd.commands.SPEED, callback=speed)
 connection.watch(obd.commands.FUEL_PRESSURE, callback=fuelPressure)
 connection.watch(obd.commands.INTAKE_TEMP, callback=intakeTemp)
 connection.watch(obd.commands.TIMING_ADVANCE, callback=racecar)
-#connection.watch(obd.commands.FUEL_LEVEL, callback=fuel)
-#connection.watch(obd.commands.ETHANOL_PERCENT, callback=corn)
-#connection.watch(obd.commands.OIL_TEMP, callback=oilTemp)
-# connection.start()
+
 
 #callback will now be fired upon receipt of new values
-
-# time.sleep(60)          #only here to keep program from ending;
-# response = connection.query(obd.commands.O2_SENSORS)
-# result = response.value
-# print(result)
-# connection.stop()
-
-
 
 #   CHANGE THIS TO THE LIVE DATA
 # sensorData = open(source + "SensorRead2.txt")
@@ -128,7 +97,7 @@ obdDatabase.write('[\n')
 
 connection.start()
 while(1):
-    if len(obdSensorData) == len(headers) + 1:
+    if len(obdSensorData) == len(headers) + 1: # plus **************
         connection.stop()
 
         for item in obdSensorData:
@@ -145,7 +114,6 @@ while(1):
                 
                 # break # remove this
                 obdDatabase = open('obdData.json', 'w')
-                time.sleep(.5)
                 toJson = {}
                 obdSensorData = []
                 obdDatabase.write('[\n')

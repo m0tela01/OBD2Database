@@ -57,7 +57,7 @@ for item in sensorData:
             data=json.load(dataToWrite)
         db.child("").remove()
         results = db.child('').set(data, user['idToken'])
-        print('\n( ͡° ͜ʖ ͡°)')
+        print('\n\\o/')
         # break # remove this
         obdData = open('obdData.json', 'w')
         time.sleep(.5)
