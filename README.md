@@ -2,11 +2,15 @@
 Reads data from an obd2 sensor and uploads it to Firebase
 test
 
+
+![bb2](https://user-images.githubusercontent.com/43968309/56969953-284b3680-6b34-11e9-94ea-b77604bec4e1.png)
+
+
 ## Install
 Do this first. 
 
-pip install obd
+sudo pip3 install obd
 
-pip install pyrebase
+sudo pip3 install pyrebase
 
-pip install requests
+sudo pip install requests
