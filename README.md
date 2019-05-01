@@ -14,3 +14,18 @@ sudo pip3 install obd
 sudo pip3 install pyrebase
 
 sudo pip install requests
+
+
+
+_____________________________________________________________________________________________
+
+run OBD2Database by running:
+
+```
+sudo python fromSenorToDatabase.py
+```
+
+_____________________________________________________________________________________________
+
+
+For WebOBDv2 the Angular UI portion of this application clone and follow the instructions on https://github.com/m0tela01/WebODB
